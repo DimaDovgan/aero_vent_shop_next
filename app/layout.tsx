@@ -26,6 +26,16 @@ export const metadata: Metadata = {
     template: "%s | АЕРО ВЕНТ",
   },
   description: "Сайт виробника безпілотних систем та РЕБ.",
+  
+  robots: {
+  index: true,
+  follow: true,
+  googleBot: {
+    index: true,
+    follow: true,
+  },
+},
+
   openGraph: {
     type: "website",
     locale: "uk_UA",
