@@ -1,18 +1,15 @@
-import { NextRequest, NextResponse } from 'next/server';
+﻿import { NextRequest, NextResponse } from 'next/server';
 import pool from '@/app/lib/db';
 
 export const revalidate = 300;
 
-interface Params {
-  params: {
-    id: string;
-  };
-}
-
-export async function GET(request: NextRequest, { params }: Params) {
+export async function GET(
+  request: NextRequest,
+  context: { params: Promise<{ id: string }> }
+) {
   try {
-    const { id } = params;
-    
+    const { id } = await context.params;
+
     const sql = `
       SELECT 
         id,
@@ -27,18 +24,18 @@ export async function GET(request: NextRequest, { params }: Params) {
       FROM ews 
       WHERE id = ?
     `;
-    
+
     const [result] = await pool.query(sql, [id]);
-    
+
     if ((result as any[]).length === 0) {
       return NextResponse.json(
         { success: false, error: 'Система не знайдена' },
         { status: 404 }
       );
     }
-    
+
     const ews = (result as any[])[0];
-    
+
     const similarSql = `
       SELECT 
         id,
@@ -51,9 +48,9 @@ export async function GET(request: NextRequest, { params }: Params) {
       ORDER BY RAND()
       LIMIT 4
     `;
-    
+
     const [similar] = await pool.query(similarSql, [id]);
-    
+
     const transformedEws = {
       ...ews,
       price: parseFloat(ews.price),
@@ -63,7 +60,7 @@ export async function GET(request: NextRequest, { params }: Params) {
         price: parseFloat(item.price)
       }))
     };
-    
+
     return NextResponse.json(
       {
         success: true,

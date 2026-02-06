@@ -39,7 +39,7 @@ export async function GET(
     const [result] = await pool.query(sql, [id]);
     if (!Array.isArray(result) || result.length === 0) {
       return NextResponse.json(
-        { success: false, error: 'Батарею не знайдено' },
+        { success: false, error: 'Р‘Р°С‚Р°СЂРµСЋ РЅРµ Р·РЅР°Р№РґРµРЅРѕ' },
         { status: 404 }
       );
     }
@@ -86,7 +86,7 @@ export async function GET(
   } catch (error) {
     console.error('API Error /batteries/[id]:', error);
     return NextResponse.json(
-      { success: false, error: 'Помилка сервера' },
+      { success: false, error: 'РџРѕРјРёР»РєР° СЃРµСЂРІРµСЂР°' },
       { status: 500 }
     );
   }

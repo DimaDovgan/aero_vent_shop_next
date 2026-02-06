@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import pool from '@/app/lib/db';
 
 export const revalidate = 300;
+export const dynamic = 'force-dynamic';
 
 const buildInClause = (values: string[]) => {
   const placeholders = values.map(() => '?').join(',');
