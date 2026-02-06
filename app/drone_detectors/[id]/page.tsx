@@ -4,6 +4,7 @@ import { getDroneDetectorByIdCached } from '@/app/lib/data_detectors';
 import { DroneDetectorDetailClient } from './pageClient';
 
 export const revalidate = 300;
+export const dynamic = 'force-dynamic';
 
 type Params = {
   params: Promise<{ id: string }>;

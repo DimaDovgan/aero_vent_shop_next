@@ -4,6 +4,7 @@ import { getBatteryByIdCached } from '@/app/lib/data_batteries';
 import { BatteryDetailClient } from './pageClient';
 
 export const revalidate = 300;
+export const dynamic = 'force-dynamic';
 
 type Params = {
   params: Promise<{ id: string }>;

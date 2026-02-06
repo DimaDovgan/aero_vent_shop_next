@@ -4,6 +4,7 @@ import { getEwsByIdCached } from '@/app/lib/data';
 import { EwsDetailClient } from './EwsDetailClient';
 
 export const revalidate = 300;
+export const dynamic = 'force-dynamic';
 
 type Params = {
   params: Promise<{ id: string }>;

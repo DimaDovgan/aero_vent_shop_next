@@ -4,6 +4,7 @@ import { getUavByIdCached } from '@/app/lib/data';
 import { UavDetailClient } from './UavDetailClient';
 
 export const revalidate = 300;
+export const dynamic = 'force-dynamic';
 
 type Params = {
   params: Promise<{ id: string }>;
