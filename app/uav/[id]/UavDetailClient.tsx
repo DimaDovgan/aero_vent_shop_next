@@ -220,7 +220,7 @@ export function UavDetailClient({ drone, relatedDrones, optionGroups }: UavDetai
                 {totalPrice.toLocaleString('uk-UA')} грн
               </div>
               <div className="text-xs text-gray-500 mt-1">
-                Базова ціна (без модулів): {Number(drone.price || 0).toLocaleString('uk-UA')} грн
+                Базова ціна (без модулів*): {Number(drone.price || 0).toLocaleString('uk-UA')} грн
               </div>
             </div>
 

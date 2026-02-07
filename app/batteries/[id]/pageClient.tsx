@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { ArrowLeft, Target, ChevronLeft, ChevronRight } from 'lucide-react';
@@ -40,6 +40,40 @@ export function BatteryDetailClient({ battery, similar }: Props) {
     if (gallery.length <= 1) return;
     setCurrentImageIndex((prev) => (prev - 1 + gallery.length) % gallery.length);
   };
+
+  const messageText = useMemo(() => {
+    const lines = [
+      `Акумулятор: ${battery.model || 'Без назви'}`,
+      `ID: ${battery.id}`,
+      `Виробник: ${battery.manufacturer}`,
+      `Тип: ${battery.batteryType}`,
+      `Конфігурація: ${battery.configuration}`,
+      `Повна конфігурація: ${battery.fullConfiguration}`,
+      `Ємність: ${battery.capacity} мА·г`,
+      `Ціна: ${battery.price.toLocaleString('uk-UA')} грн`,
+    ];
+    return lines.join('\n');
+  }, [
+    battery.id,
+    battery.model,
+    battery.manufacturer,
+    battery.batteryType,
+    battery.configuration,
+    battery.fullConfiguration,
+    battery.capacity,
+    battery.price,
+  ]);
+
+  const whatsappMessage = useMemo(
+    () => encodeURIComponent(messageText),
+    [messageText]
+  );
+
+  const mailtoHref = useMemo(() => {
+    const subject = encodeURIComponent('Замовлення акумулятора');
+    const body = encodeURIComponent(messageText);
+    return `mailto:${SITE_CONFIG.contact.email}?subject=${subject}&body=${body}`;
+  }, [messageText]);
 
   return (
     <div className="min-h-screen bg-black pt-24 pb-12">
@@ -141,7 +175,7 @@ export function BatteryDetailClient({ battery, similar }: Props) {
                 {battery.model}
               </h1>
               <div className="text-3xl font-mono text-green-400">
-                {battery.price.toLocaleString()} грн
+                {battery.price.toLocaleString('uk-UA')} грн
               </div>
             </div>
 
@@ -154,7 +188,7 @@ export function BatteryDetailClient({ battery, similar }: Props) {
 
             <div className="bg-black/50 border border-white/10 tactical-clip p-5 mb-8">
               <h3 className="text-lg font-stencil text-white mb-4 border-b border-white/10 pb-2">
-                ХАРАКТЕРИСТИКИ
+                Характеристики
               </h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-y-3 gap-x-8">
                 <div className="flex justify-between border-b border-white/5 pb-1">
@@ -180,22 +214,33 @@ export function BatteryDetailClient({ battery, similar }: Props) {
               </div>
             </div>
 
-            <a
-              href={SITE_CONFIG.social.whatsapp}
-              className="w-full bg-aero hover:bg-aero-light text-white font-bold py-4 px-8 tactical-clip uppercase tracking-wider transition-all hover:scale-[1.02] shadow-lg shadow-aero/20 text-lg flex items-center justify-center mb-8"
-              target="_blank"
-              rel="noreferrer"
-            >
-              <Target className="w-5 h-5 mr-2" />
-              ЗАМОВИТИ АКУМУЛЯТОР
-            </a>
+            <div className="space-y-3 mb-8">
+              <a
+                href={`${SITE_CONFIG.social.whatsapp}?text=${whatsappMessage}`}
+                className="w-full bg-aero hover:bg-aero-light text-white font-bold py-4 px-8 tactical-clip uppercase tracking-wider transition-all hover:scale-[1.02] shadow-lg shadow-aero/20 text-lg flex items-center justify-center"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <Target className="w-5 h-5 mr-2" />
+                Замовити у WhatsApp
+              </a>
+              <a
+                href={mailtoHref}
+                className="w-full bg-transparent border border-white/20 hover:border-aero-accent text-white hover:text-aero-accent font-bold py-4 px-8 tactical-clip uppercase tracking-wider transition-all text-lg flex items-center justify-center"
+              >
+                Замовити через Email
+              </a>
+            </div>
+            <p className="text-xs text-center text-gray-500 mb-8">
+              * Для замовлення напишіть нам повідомлення або зателефонуйте
+            </p>
           </div>
         </div>
 
         {battery.detailedInfo && (
           <div className="bg-black/50 border border-white/10 tactical-clip p-8 mb-12">
             <h3 className="text-xl font-stencil text-white mb-6 border-b border-white/10 pb-3">
-              ДЕТАЛЬНИЙ ОПИС
+              Детальний опис
             </h3>
             <div
               className="prose prose-invert max-w-none"
@@ -207,7 +252,7 @@ export function BatteryDetailClient({ battery, similar }: Props) {
         {similar.length > 0 && (
           <div className="border-t border-white/10 pt-12">
             <h2 className="text-3xl font-stencil text-white mb-8">
-              СХОЖІ АКУМУЛЯТОРИ
+              Схожі акумулятори
             </h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {similar.map((item) => (

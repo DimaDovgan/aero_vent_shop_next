@@ -33,7 +33,7 @@ export function DetectorCard({ detector }: DetectorCardProps) {
           ) : (
             <div className="absolute inset-0 flex items-center justify-center">
               <div className="w-32 h-32 border border-white/10 rounded-full flex items-center justify-center">
-                <span className="text-3xl font-stencil text-white/20">????</span>
+                <span className="text-3xl font-stencil text-white/20">DET</span>
               </div>
             </div>
           )}
@@ -44,7 +44,7 @@ export function DetectorCard({ detector }: DetectorCardProps) {
             {detector.model}
           </h3>
           <div className="text-2xl font-bold text-white mt-2 font-mono">
-            {detector.price.toLocaleString()} ??????
+            {detector.price.toLocaleString()} грн
           </div>
           <p className="text-sm text-gray-400 mt-3 line-clamp-3">
             {detector.description}
@@ -52,10 +52,10 @@ export function DetectorCard({ detector }: DetectorCardProps) {
 
           <div className="mt-auto pt-4 border-t border-white/10 flex justify-between items-center">
             <span className="text-xs text-gray-500 uppercase tracking-wider">
-              ???????????????? ????????????
+              Детектор БПЛА
             </span>
             <span className="flex items-center text-aero-accent text-sm font-bold uppercase tracking-wider group-hover:translate-x-1 transition-transform">
-              ???????????????????? <ChevronRight className="w-4 h-4 ml-1" />
+              Переглянути <ChevronRight className="w-4 h-4 ml-1" />
             </span>
           </div>
         </div>

@@ -47,7 +47,7 @@ export function BatteryCard({ battery }: BatteryCardProps) {
             {battery.model}
           </h3>
           <div className="text-2xl font-bold text-white mt-2 font-mono">
-            {battery.price.toLocaleString()} ??????
+            {battery.price.toLocaleString()} грн
           </div>
           <p className="text-sm text-gray-400 mt-3 line-clamp-3">
             {battery.description}
@@ -55,10 +55,10 @@ export function BatteryCard({ battery }: BatteryCardProps) {
 
           <div className="mt-auto pt-4 border-t border-white/10 flex justify-between items-center">
             <span className="text-xs text-gray-500 uppercase tracking-wider">
-              {battery.manufacturer} ??? {battery.batteryType} ??? {battery.configuration}
+              {battery.manufacturer} • {battery.batteryType} • {battery.configuration}
             </span>
             <span className="flex items-center text-aero-accent text-sm font-bold uppercase tracking-wider group-hover:translate-x-1 transition-transform">
-              ???????????????????? <ChevronRight className="w-4 h-4 ml-1" />
+              Переглянути <ChevronRight className="w-4 h-4 ml-1" />
             </span>
           </div>
         </div>

@@ -42,7 +42,7 @@ export function EwsCard({ ews }: EwsCardProps) {
           </h3>
 
           <div className="text-2xl font-bold text-white mt-2 font-mono">
-            {ews.price.toLocaleString()} ??????
+            {ews.price.toLocaleString()} грн
           </div>
 
           <p className="text-sm text-gray-400 mt-3 line-clamp-3">
@@ -51,14 +51,14 @@ export function EwsCard({ ews }: EwsCardProps) {
 
           <div className="mt-auto pt-4 border-t border-white/10 flex justify-between items-center">
             <span className="text-xs text-gray-500 uppercase tracking-wider">
-              ????????????: {ews.productionStatus === 'inProduction'
-                ? '?? ??????????????????'
+              Статус: {ews.productionStatus === 'inProduction'
+                ? 'В наявності'
                 : ews.productionStatus === 'madeToOrder'
-                ? '?????? ????????????????????'
-                : '????????????'}
+                ? 'Під замовлення'
+                : 'Знятий з виробництва'}
             </span>
             <span className="flex items-center text-aero-accent text-sm font-bold uppercase tracking-wider group-hover:translate-x-1 transition-transform">
-              ???????????????????? <ChevronRight className="w-4 h-4 ml-1" />
+              Переглянути <ChevronRight className="w-4 h-4 ml-1" />
             </span>
           </div>
         </div>

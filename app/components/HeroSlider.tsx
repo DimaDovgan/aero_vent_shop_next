@@ -1,14 +1,13 @@
 "use client";
 import React, { useEffect, useState } from 'react';
 import Image from "next/image";
-import { ChevronLeft, ChevronRight, Crosshair, Zap } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Crosshair } from 'lucide-react';
 import { 
   getGradientByApplication, 
   getApplicationText,
   formatSpecValue,
   type TransformedDrone 
 } from '@/app/lib/drone-utils';
-import { SITE_CONFIG } from '@/config/site';
 
 type HeroSliderProps = {
   initialDrones: TransformedDrone[];
@@ -151,22 +150,13 @@ export function HeroSlider({ initialDrones }: HeroSliderProps) {
             )}
 
             {/* Кнопки на десктопі */}
-            <div className="hidden lg:flex space-x-4 mt-8">
+            <div className="hidden lg:block mt-8">
               <a 
                 href={detailPath}
-                className="bg-aero hover:bg-aero-light text-white font-bold py-3 px-8 tactical-clip uppercase tracking-wider transition-all hover:scale-105 shadow-lg shadow-aero/20 flex items-center"
+                className="w-full max-w-[520px] bg-aero hover:bg-aero-light text-white font-bold py-[13px] px-10 tactical-clip uppercase tracking-wider transition-all hover:scale-105 shadow-lg shadow-aero/20 flex items-center justify-center"
               >
                 <Crosshair className="mr-2 h-5 w-5" />
                 Детальніше
-              </a>
-              <a
-                href={SITE_CONFIG.social.whatsapp}
-                className="bg-transparent border border-white/30 hover:border-aero-accent text-white hover:text-aero-accent font-bold py-3 px-8 tactical-clip uppercase tracking-wider transition-all flex items-center"
-                target="_blank"
-                rel="noreferrer"
-              >
-                <Zap className="mr-2 h-5 w-5" />
-                Замовити
               </a>
             </div>
           </div>
@@ -255,22 +245,13 @@ export function HeroSlider({ initialDrones }: HeroSliderProps) {
             )}
 
             {/* Кнопки на мобільних з відступом */}
-            <div className="flex space-x-4 mt-20">
+            <div className="mt-20">
               <a 
                 href={detailPath}
-                className="flex-1 bg-aero hover:bg-aero-light text-white font-bold py-3 px-6 tactical-clip uppercase tracking-wider transition-all hover:scale-105 shadow-lg shadow-aero/20 flex items-center justify-center text-sm"
+                className="w-full bg-aero hover:bg-aero-light text-white font-bold py-[13px] px-6 tactical-clip uppercase tracking-wider transition-all hover:scale-105 shadow-lg shadow-aero/20 flex items-center justify-center text-sm"
               >
                 <Crosshair className="mr-2 h-4 w-4" />
                 Детальніше
-              </a>
-              <a
-                href={SITE_CONFIG.social.whatsapp}
-                className="flex-1 bg-transparent border border-white/30 hover:border-aero-accent text-white hover:text-aero-accent font-bold py-3 px-6 tactical-clip uppercase tracking-wider transition-all flex items-center justify-center text-sm"
-                target="_blank"
-                rel="noreferrer"
-              >
-                <Zap className="mr-2 h-4 w-4" />
-                Замовити
               </a>
             </div>
           </div>

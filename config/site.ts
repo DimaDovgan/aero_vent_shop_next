@@ -13,6 +13,6 @@ export const SITE_CONFIG = {
   social: {
     facebook: "https://facebook.com/",
     instagram: "https://instagram.com/",
-    whatsapp: "https://wa.me/380937789644",
+    whatsapp: "https://wa.me/380973552061",
   },
 };
